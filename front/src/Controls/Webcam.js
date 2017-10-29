@@ -2,6 +2,10 @@ import React from 'react'
 import Webcam from 'react-webcam'
 import Button from 'ui/Button'
 
+const urlToRequest = process.env.NODE_ENV === 'production'
+  ? '/detect'
+  : 'http://localhost:3001/detect'
+
 export default class WebcamCapture extends React.Component {
   state = { data: [] }
   setRef = (webcam) => {
@@ -21,10 +25,10 @@ export default class WebcamCapture extends React.Component {
         const formData = new FormData()
         formData.append("image", image)
 
-        return fetch('http://localhost:3001/detect', {
+        return fetch(urlToRequest, {
           method: 'POST',
           body: formData,
-          mode: 'cors',
+          mode: process.env.NODE_ENV === 'production' ? 'cors' : 'none',
           responseType: 'json'
         })
       })
@@ -43,7 +47,7 @@ export default class WebcamCapture extends React.Component {
   runCapture = () => {
     if (this.capturing) return
 
-    this.capturing = setInterval(this.capture, 1000)
+    this.capturing = setInterval(this.capture, 5000)
     this.timer = setTimeout(this.stopCapture, 20000)
   }
   stopCapture = () => {
@@ -77,7 +81,7 @@ export default class WebcamCapture extends React.Component {
           {
             this.state.data.map(({ image, emotions = [] }) => {
               return (
-                <div>
+                <div className="image-result">
                   <img src={image} alt="i" />
                   {
                     emotions.map(({ faceRectangle, scores }) => (

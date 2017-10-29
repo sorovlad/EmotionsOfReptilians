@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Button from 'ui/Button'
 import Webcam from './Controls/Webcam'
 
 class App extends Component {

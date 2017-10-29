@@ -33,3 +33,7 @@
   flex-flow: column nowrap;
   align-items: center;
 }
+
+.image-result {
+  margin-top: 40px;
+}
