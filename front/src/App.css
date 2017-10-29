@@ -1,0 +1,35 @@
+.App {
+  /*background-color: #052427;*/
+}
+
+.App-header {
+  background-color: #14435B;
+  background-image: url("./lizard.jpg");
+  background-position: right;
+  background-repeat: no-repeat;
+  height: 129px;
+  padding: 10px;
+  color: #FFE056;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.App-title {
+  text-align: center;
+  font-size: 3em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.webcam {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.webcam-controls {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
