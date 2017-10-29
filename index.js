@@ -11,9 +11,15 @@ const upload = multer()
 
 app.use(cors())
 
+const directoryUpload = 'uploads'
+
 app.post('/detect', upload.array(), function(req, res) {
   const base64Data = req.body.image.replace(/^data:image\/jpeg;base64,/, '')
-  const filePath = path.join(__dirname, 'uploads', 'out.jpg')
+  const filePath = path.join(__dirname, directoryUpload, 'out.jpg')
+
+  if (!fs.existsSync(directoryUpload)){
+    fs.mkdirSync(directoryUpload)
+  }
 
   fs.writeFile(filePath, base64Data, 'base64', function(err) {
     if (err) console.log(err);
