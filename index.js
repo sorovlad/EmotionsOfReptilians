@@ -30,6 +30,6 @@ app.post('/detect', upload.array(), function(req, res) {
 app.use('/', express.static(__dirname + '/front/build'))
 app.use('/static', express.static(__dirname + '/front/build/static'))
 
-const port = process.env.NODE_ENV === 'production' ? 3000 : 3001
+const port = process.env.PORT || 3001
 
-app.listen(3001)
+app.listen(port)
