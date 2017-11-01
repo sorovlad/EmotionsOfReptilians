@@ -84,10 +84,11 @@ export default class WebcamCapture extends React.Component {
                 <div className="image-result">
                   <img src={image} alt="i" />
                   {
-                    emotions.map(({ faceRectangle, scores }) => (
+                    emotions.map(({ faceRectangle, scores, reptilian }) => (
                       <div>
                         {faceRectangle ? `rect: ${JSON.stringify(faceRectangle)}` : null}
                         {renderScores(scores)}
+                        <div>reptilian: {reptilian ? reptilian : 'Is not reptilian!'}</div>
                       </div>
                     ))
                   }
